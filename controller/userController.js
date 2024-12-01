@@ -32,10 +32,6 @@ module.exports.addUser = async (req, res) => {
     try {
         const { username, email, role, groups } = req.body;
 
-        if (!validateGroups(groups)) {
-            return res.status(400).json({ error: 'Invalid groups provided.' });
-        }
-
         const user = new User({ username, email, role, groups });
         await user.save();
 
